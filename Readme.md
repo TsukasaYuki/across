@@ -23,7 +23,10 @@ bbr.sh
 - Description: Auto install latest kernel for TCP BBR
 - Intro: https://teddysun.com/489.html
 
-LINODE的KVM架構LINUX更換內核
+LINODE的KVM架構LINUX更換內核 
+文章转载自：Madlax的杂物房（http://madlax.pw/）
+http://madlax.pw/2016/12/03/103.html
+
 
 安裝Grub
 安裝過程中可能會詢問安裝位置，不需要安裝到MBR
