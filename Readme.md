@@ -29,60 +29,102 @@ LINODE的KVM架構LINUX更換內核
 安裝過程中可能會詢問安裝位置，不需要安裝到MBR
 
 Arch Linux
+
 pacman -S linux grub
 
+
 CentOS 7
+
 yum install kernel grub2
 
+
 Debian
+
 apt-get install linux-image-amd64 grub2
 
+
 Fedora 22
+
 dnf install kernel-core grub2
 
+
 Ubuntu
+
 apt-get install linux-image-virtual grub2
 
+
 配置Grub
+
 編輯/etc/default/grub，修改以下項目：
+
 GRUB_TIMEOUT=10
+
 GRUB_CMDLINE_LINUX="console=ttyS0,19200n8"
+
 GRUB_DISABLE_LINUX_UUID=true
+
 GRUB_SERIAL_COMMAND="serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1"
+
 GRUB_TERMINAL=serial
 
+
 更新bootloader，更新內核後需要再一次運行該命令來更新GRUB目錄，
+
 預設為清單第一個內核啟動：
 
+
 Arch Linux
+
 grub-mkconfig -o /boot/grub/grub.cfg
 
+
 Debian 8 & Ubuntu 15.04
+
 update-grub
 
+
 CentOS 7
+
 mkdir /boot/grub
+
 grub2-mkconfig -o /boot/grub/grub.cfg
 
+
 Fedora 22 - Replace with the current kernel version
+
 dracut /boot/initrd-4.0.5-300.fc22.x86_64.img 4.0.5-300.fc22.x86_64 
+
 mkdir /boot/grub
+
 grub2-mkconfig -o /boot/grub/grub.cfg
+
 
 重啟到Grub2 模式
 
+
 在LINODE面板選擇編輯你的設定檔
+
 Click on Edit under the Configuration Profiles section
 
+
+
 在Boot Settings選項的Kernel清單裡選擇GRUB 2
+
 In the Boot Settings section, select GRUB 2 from the Kernel drop down menu
 
+
 點Save Changes保存，重啟機子後就可以按通常方式更換發行版本內核了。
+
 啟動中可能會出現以下錯誤，可以忽略。
+
 error: file `/boot/grub/i386-pc/all_video.mod' not found.
+
 Loading Linux linux ...
+
 Loading initial ramdisk ...
+
 Press any key to continue...
+
 
 
 bench.sh
